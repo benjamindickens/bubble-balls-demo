@@ -1,0 +1,17 @@
+.balls {
+  position: relative;
+  user-select: none;
+  max-width: 100%;
+  overflow: hidden;
+
+  &-unit-example {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  & svg {
+    position: absolute;
+    top: 0;
+  }
+
+}
