@@ -14,14 +14,92 @@
 
 <main>
 
+    <h1 class="main-title">Bubble Balls Demos</h1>
+
     <div class="example">
         <h1>Static Units</h1>
+
+        <div class="description">
+            <h3 class="description__title">JS Code</h3>
+            <div class="description__content">
+                <p>const staticApp = new Balls(staticUnit, data);</p>
+            </div>
+        </div>
+
+        <h3 class="description__title">Dummy Data</h3>
+        <div class="description__content">
+            {
+            id: 7,
+            people: 800,
+            img: "https://picsum.photos/200",
+            region: "da",
+            color: "royalblue",
+            background: "white",
+            borderColor: "royalblue",
+            }
+        </div>
+
         <div class="js-static container balls">
         </div>
     </div>
 
     <div class="example">
         <h1>Relative Units</h1>
+
+        <div class="description">
+            <h3 class="description__title">JS Code</h3>
+            <div class="description__content">
+                <p>const relativeApp = new Balls(relativeUnit, data2, {
+                    measurementUnit: {
+                    name: "rem"
+                    },
+                    dimensions: {
+                    cols: 2,
+                    },
+
+                    groupsStyles: [
+                    {
+                    color: "royalblue",
+                    background: "white",
+                    borderColor: "royalblue",
+                    },
+                    {
+                    color: "white",
+                    background: "royalblue",
+                    borderColor: "darkblue",
+                    },
+                    {
+                    color: "#bada55",
+                    background: "indigo",
+                    borderColor: "indigo",
+                    },
+                    {
+                    color: "#bada55",
+                    background: "indigo",
+                    borderColor: "#bada55",
+                    },
+                    ],
+                    groupParam: {
+                    name: "region",
+                    },
+                    radiusParam: {
+                    name: "people",
+                    }
+
+                    });</p>
+            </div>
+
+            <h3 class="description__title">Dummy Data</h3>
+            <div class="description__content">
+                {
+                id: 2,
+                title: "New York",
+                region: "ba",
+                people: 700,
+                },
+            </div>
+        </div>
+
         <div class="js-relative container balls">
             <div style="width: 1rem" class="balls-unit-example"></div>
         </div>
@@ -29,6 +107,40 @@
 
     <div class="example">
         <h1>Hover</h1>
+
+        <div class="description">
+            <h3 class="description__title">JS Code</h3>
+            <div class="description__content">
+                <p>const hoverApp = new Balls(hover, data3, {
+                    forces: {
+                    collisionMultiplier: 2.5 //space between
+
+                    },
+                    on: {
+                    mouseover() {
+                    // do something on mouseover... "this" represent hovered el
+                    this.attr("opacity", "0.3")
+                    }, mouseout() {
+                    // do something on mouseout... "this" represent hovered el
+                    // usually it is needed to reverse the effect of "mouseover"
+                    this.attr("opacity", "1")
+                    },
+                    },
+                    });</p>
+            </div>
+
+            <h3 class="description__title">Dummy Data</h3>
+            <div class="description__content">
+                {
+                id: 4,
+                people: 800,
+                img: "https://picsum.photos/200",
+                region: "da",
+                }
+            </div>
+
+        </div>
+
         <div class="js-hover container balls">
         </div>
     </div>

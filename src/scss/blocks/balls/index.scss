@@ -18,3 +18,24 @@ body {
   height: 55rem;
   width: 100%;
 }
+
+.description {
+  display: grid;
+  gap: 1.2rem;
+
+  &__content {
+    white-space: pre;
+    display: grid;
+    gap: 1.2rem;
+  }
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3.2rem;
+}
+
+main {
+  display: grid;
+  gap: 4rem;
+}
