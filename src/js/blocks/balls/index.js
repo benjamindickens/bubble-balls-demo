@@ -10,7 +10,7 @@ import "@/balls/index.scss";
 let currentIndex = 1;
 
 class Balls {
-    constructor(container, [...data], options) {
+    constructor(container, data, options) {
         this.container = typeof container === "string" ? document.querySelector(container) : container;
         this.appIndex = currentIndex;
         currentIndex++;
@@ -38,8 +38,8 @@ class Balls {
         this.defaultStyles = {
             color: options?.defaultStyles?.color === undefined ? "#000000" : options?.defaultStyles?.color,
             background: options?.defaultStyles?.background === undefined ? "#FFFFFF" : options?.defaultStyles?.background,
-            borderColor: options?.defaultStyles?.borderColor === undefined ? "transparent" : options?.defaultStyles?.borderColor,
-            borderWidth: options?.defaultStyles?.borderWidth === undefined ? 0 : options?.defaultStyles?.borderWidth
+            borderColor: options?.defaultStyles?.borderColor === undefined ? "#000000" : options?.defaultStyles?.borderColor,
+            borderWidth: options?.defaultStyles?.borderWidth === undefined ? 2 : options?.defaultStyles?.borderWidth
         }
         this.dynamicFontSize = {
             init: options?.dynamicFontSize?.init || true,
@@ -100,10 +100,11 @@ class Balls {
         this.getOneUnit = () => this.container.querySelector(".balls-unit-example").offsetWidth;
 
         this.calcDimensions = () => {
-            this.dimensions.width = this.container.offsetWidth;
-            this.dimensions.height = this.container.offsetHeight;
-            this.dimensions.containerArea = Math.round(this.dimensions.width * this.dimensions.height);
-            this.dimensions.relocationStepX = this.dimensions.width / this.dimensions.cols;
+            const current = this.container.getBoundingClientRect();
+            this.dimensions.width = current.width;
+            this.dimensions.height = current.height;
+            this.dimensions.containerArea = Math.round(current.width * current.height);
+            this.dimensions.relocationStepX = current.width / this.dimensions.cols;
         };
 
         this.calcDimensionsY = () => {
@@ -210,11 +211,11 @@ class Balls {
 
 
             if (options?.radiusParam?.name) {
-                this.radiusParam.extent = extent(data, (item) => item[options?.radiusParam?.name]);
+                this.radiusParam.extent = await extent(data, (item) => item[options?.radiusParam?.name]);
 
                 this.scaleRadius = this.measurementUnit.name !== "px"
-                    ? scaleLinear().domain(this.radiusParam.extent).range([this.radiusParam.min * unitValue, this.radiusParam.max * unitValue])
-                    : scaleLinear().domain(this.radiusParam.extent).range([this.radiusParam.min, this.radiusParam.max])
+                    ? await scaleLinear().domain(this.radiusParam.extent).range([this.radiusParam.min * unitValue, this.radiusParam.max * unitValue])
+                    : await scaleLinear().domain(this.radiusParam.extent).range([this.radiusParam.min, this.radiusParam.max])
             }
 
             this.formattedData = (this.randomizeData ? this.shuffleData(data) : data).map((item) => {
@@ -409,8 +410,8 @@ class Balls {
             this.on.mouseout.call(select(hovered));
         };
 
-        this.dragStart = (event) => {
-            const circle = select(event.sourceEvent.target).classed("dragging", true);
+        this.dragStart = (event, d) => {
+            const circle = select(`ball-container-${this.appIndex}-${d.id}`).classed("dragging", true);
             this.simulation.alphaTarget(0.03).restart();
 
             const dragged = (event, d) => {
@@ -437,10 +438,11 @@ class Balls {
                 .attr("width", this.dimensions.width);
 
             this.elements = this.svg
-                .selectAll("ball")
+                .selectAll(".ball")
                 .data(this.formattedData)
                 .enter()
-                .append("g");
+                .append("g")
+                .attr("class", (d) => `ball-container-${this.appIndex}-${d.id}`);
 
             if (this.draggable) {
                 this.elements.call(drag().on("start", this.dragStart, true));
@@ -449,7 +451,6 @@ class Balls {
             this.balls = this.elements
                 .append("circle")
                 .classed("ball", true)
-                .attr("id", (d) => `ball-${this.appIndex}-${d.id}`)
                 .attr("r", (d) => d.radius)
                 .attr("stroke", (d) => d.borderColor || this.defaultStyles.borderColor)
                 .attr("stroke-width", (d) => d.borderWidth || this.defaultStyles.borderWidth)
@@ -608,7 +609,7 @@ const data2 = [
         id: 1,
         title: "Paris",
         region: "ba",
-        people: 40,
+        people: 1000,
     },
     {
         id: 2,
@@ -630,55 +631,62 @@ const data2 = [
     }
 ];
 
-const staticApp = new Balls(staticUnit, data, {
 
-    // defaultStyles: {
-    //     borderWidth: 2,
-    // },
+const data3 = [
+    {
+        id: 1,
+        title: "Paris",
+        region: "ba",
+        people: 40,
+    },
+    {
+        id: 4,
+        people: 800,
+        img: "https://picsum.photos/200",
+        region: "da",
+    }
+];
 
-});
+const staticApp = new Balls(staticUnit, data);
 
 
 const relativeApp = new Balls(relativeUnit, data2, {
-    // measurementUnit: {
-    //     name: "rem"
-    // },
-    // defaultStyles: {
-    //     borderWidth: 2,
-    // },
-    // dimensions: {
-    //     cols: 2,
-    // },
-    //
-    // groupsStyles: [
-    //     {
-    //         color: "royalblue",
-    //         background: "white",
-    //         borderColor: "royalblue",
-    //     },
-    //     {
-    //         color: "white",
-    //         background: "royalblue",
-    //         borderColor: "darkblue",
-    //     },
-    //     {
-    //         color: "#bada55",
-    //         background: "indigo",
-    //         borderColor: "#bada55",
-    //     },
-    // ],
-    // groupParam: {
-    //     name: "region",
-    // },
-    // radiusParam: {
-    //     name: "people",
-    // }
+    measurementUnit: {
+        name: "rem"
+    },
+    dimensions: {
+        cols: 2,
+    },
+
+    groupsStyles: [
+        {
+            color: "royalblue",
+            background: "white",
+            borderColor: "royalblue",
+        },
+        {
+            color: "white",
+            background: "royalblue",
+            borderColor: "darkblue",
+        },
+        {
+            color: "#bada55",
+            background: "indigo",
+            borderColor: "#bada55",
+        },
+    ],
+    groupParam: {
+        name: "region",
+    },
+    radiusParam: {
+        name: "people",
+    }
 
 });
 
 
 
-const hoverApp = new Balls(hover, data, {
+const hoverApp = new Balls(hover, data3, {
 
     on: {
         mouseover() {
