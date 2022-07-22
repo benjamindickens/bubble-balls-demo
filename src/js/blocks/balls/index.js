@@ -36,7 +36,6 @@ const data = [
     {
         id: 4,
         people: 1000,
-        img: "/images/pages/home/values/common/bg-big.svg",
         region: "da",
         color: "yellow",
         background: "gray",
@@ -54,7 +53,6 @@ const data = [
     {
         id: 6,
         people: 300,
-        img: "/images/pages/home/values/common/bg-big.svg",
         region: "da",
         color: "royalblue",
         background: "white",
