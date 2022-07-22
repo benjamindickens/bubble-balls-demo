@@ -1,81 +1,14 @@
 import Balls from "bubble-balls";
 
-const staticUnit = document.querySelector(".js-static");
 const relativeUnit = document.querySelector(".js-relative");
-const hover = document.querySelector(".js-hover");
 
 const data = [
     {
         id: 1,
         title: "Paris",
         region: "ba",
-        people: 40,
-        color: "royalblue",
-        background: "white",
-        borderColor: "royalblue",
-
-    },
-    {
-        id: 2,
-        title: "New York",
-        region: "ba",
-        people: 700,
-        color: "gray",
-        background: "black",
-        borderColor: "white",
-    },
-    {
-        id: 3,
-        title: "London",
-        people: 500,
-        region: "ga",
-        color: "purple",
-        background: "white",
-        borderColor: "purple",
-    },
-    {
-        id: 4,
-        people: 1000,
-        region: "da",
-        color: "yellow",
-        background: "gray",
-        borderColor: "yellow",
-    },
-    {
-        id: 5,
         people: 1000,
         img: "https://picsum.photos/200",
-        region: "da",
-        color: "red",
-        background: "black",
-        borderColor: "red",
-    },
-    {
-        id: 6,
-        people: 300,
-        region: "da",
-        color: "royalblue",
-        background: "white",
-        borderColor: "royalblue",
-    },
-    {
-        id: 7,
-        people: 800,
-        img: "https://picsum.photos/200",
-        region: "da",
-        color: "royalblue",
-        background: "white",
-        borderColor: "royalblue",
-    }
-];
-
-
-const data2 = [
-    {
-        id: 1,
-        title: "Paris",
-        region: "ba",
-        people: 1000,
     },
     {
         id: 2,
@@ -97,30 +30,33 @@ const data2 = [
         region: "da",
     },
     {
-        id: 6,
-        title: "Shanghai",
+        id: 5,
+        title: "Tokio",
         people: 10000,
         region: "ya",
     },
-];
-
-
-const data3 = [
     {
-        id: 1,
-        title: "Paris",
+        id: 6,
+        title: "Shenzhen",
+        people: 10000,
+        region: "ha",
     },
     {
-        id: 4,
-        people: 800,
-        img: "https://picsum.photos/200",
-        region: "da",
-    }
+        id: 7,
+        title: "Rome",
+        people: 10000,
+        region: "ha",
+    },
+    {
+        id: 8,
+        title: "Madrid",
+        people: 10000,
+        region: "ha",
+    },
+
 ];
 
-const staticApp = new Balls(staticUnit, data);
-
-const relativeApp = new Balls(relativeUnit, data2, {
+const relativeApp = new Balls(relativeUnit, data, {
     measurementUnit: {
         name: "rem"
     },
@@ -155,14 +91,9 @@ const relativeApp = new Balls(relativeUnit, data2, {
     },
     radiusParam: {
         name: "people",
-    }
-
-});
-
-
-const hoverApp = new Balls(hover, data3, {
+    },
     forces: {
-        collisionMultiplier: 2.5 //space between
+        collisionMultiplier: 1.1 //space between
 
     },
     on: {
@@ -175,4 +106,5 @@ const hoverApp = new Balls(hover, data3, {
             this.attr("opacity", "1")
         },
     },
+
 });
