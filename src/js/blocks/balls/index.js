@@ -93,6 +93,7 @@ const data2 = [
     },
     {
         id: 4,
+        title: "Image",
         people: 800,
         img: "https://picsum.photos/200",
         region: "da",
