@@ -17,6 +17,70 @@
     <h1 class="main-title">Bubble Balls Demos</h1>
 
     <div class="example">
+        <h1>Default with custom balls styles</h1>
+
+        <div class="description">
+            <h3 class="description__title">JS Code</h3>
+            <div class="description__content">
+                <p>const defaultApp = new Balls(relativeUnit, data2)</p>
+            </div>
+
+            <h3 class="description__title">Dummy Data</h3>
+            <div class="description__content">
+                {
+                id: 1,
+                title: "Paris",
+                color: "royalblue",
+                background: "white",
+                borderColor: "royalblue",
+
+                },
+                {
+                id: 2,
+                title: "New York",
+                color: "gray",
+                background: "black",
+                borderColor: "white",
+                },
+                {
+                id: 3,
+                title: "London",
+                color: "purple",
+                background: "white",
+                borderColor: "purple",
+                },
+                {
+                id: 4,
+                img: "https://picsum.photos/200",
+                color: "red",
+                background: "black",
+                borderColor: "red",
+                },
+                {
+                id: 5,
+                img: "https://picsum.photos/200",
+                color: "royalblue",
+                background: "white",
+                borderColor: "royalblue",
+                }
+
+                width img
+
+                {
+                id: 2,
+                img: "https://picsum.photos/200",
+                color: "royalblue",
+                background: "white",
+                borderColor: "royalblue",
+                }
+            </div>
+        </div>
+
+        <div class="js-default container balls">
+        </div>
+    </div>
+
+    <div class="example">
         <h1>Relative Units + Hover + dimension.cols + groupStyles + groupPram + radiusPram + forces.collisionMultiplier</h1>
 
         <div class="description">
@@ -55,6 +119,7 @@
                     groupParam: {
                     name: "region",
                     },
+                    titlePropertyName: "region",
                     radiusParam: {
                     name: "people",
                     },

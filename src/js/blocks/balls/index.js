@@ -1,6 +1,46 @@
 import Balls from "bubble-balls";
 
 const relativeUnit = document.querySelector(".js-relative");
+const defaultUnit = document.querySelector(".js-default");
+const data2 = [
+    {
+        id: 1,
+        title: "Paris",
+        color: "royalblue",
+        background: "white",
+        borderColor: "royalblue",
+
+    },
+    {
+        id: 2,
+        title: "New York",
+        color: "gray",
+        background: "black",
+        borderColor: "white",
+    },
+    {
+        id: 3,
+        title: "London",
+        color: "purple",
+        background: "white",
+        borderColor: "purple",
+    },
+    {
+        id: 4,
+        img: "https://picsum.photos/200",
+        color: "red",
+        background: "black",
+        borderColor: "red",
+    },
+    {
+        id: 5,
+        img: "https://picsum.photos/200",
+        color: "royalblue",
+        background: "white",
+        borderColor: "royalblue",
+    }
+];
+
 
 const data = [
     {
@@ -63,7 +103,6 @@ const relativeApp = new Balls(relativeUnit, data, {
     dimensions: {
         cols: 2,
     },
-
     groupsStyles: [
         {
             color: "royalblue",
@@ -89,6 +128,7 @@ const relativeApp = new Balls(relativeUnit, data, {
     groupParam: {
         name: "region",
     },
+    titlePropertyName: "region",
     radiusParam: {
         name: "people",
     },
@@ -108,3 +148,5 @@ const relativeApp = new Balls(relativeUnit, data, {
     },
 
 });
+
+const defaultApp = new Balls(defaultUnit , data2);
