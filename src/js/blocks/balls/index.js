@@ -2,6 +2,7 @@ import Balls from "bubble-balls";
 
 const relativeUnit = document.querySelector(".js-relative");
 const defaultUnit = document.querySelector(".js-default");
+
 const data2 = [
     {
         id: 1,
@@ -133,7 +134,7 @@ const relativeApp = new Balls(relativeUnit, data, {
         name: "people",
     },
     forces: {
-        collisionMultiplier: 1.1 //space between
+        collisionMultiplier: 1.3 //space between
 
     },
     on: {
